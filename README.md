@@ -1,3 +1,7 @@
+# Disclaimer
+
+This is a forked repository from [etaque/elm-form](https://travis-ci.org/etaque/elm-form).  It has been updated as described here: [https://github.com/etaque/elm-form/issues/104](https://github.com/etaque/elm-form/issues/104#issuecomment-392170646).  If this behavior is not desirable for your project, please use the original library.
+
 # Elm Form
 
 HTML live forms builders and validation for Elm. [![Build Status](https://travis-ci.org/etaque/elm-form.svg?branch=master)](https://travis-ci.org/etaque/elm-form)
