@@ -1,7 +1,7 @@
 {
   "name": "elm-form",
   "version": "1.0.0",
-  "description": "HTML live forms builders and validation for Elm.",
+  "description": "HTML live forms builders and validation for Elm (forked from etaque/elm-form)",
   "main": "index.js",
   "directories": {
     "example": "example",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dtraft/elm-form.git"
+    "url": "git+https://github.com/etaque/elm-form.git"
   },
   "author": "Emilien Taque",
   "license": "BSD-3-Clause",
