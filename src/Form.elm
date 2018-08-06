@@ -181,11 +181,8 @@ update validation msg (F model) =
 
         Blur name ->
             let
-                newDirtyFields =
-                    Set.remove name model.dirtyFields
-
                 newModel =
-                    { model | focus = Nothing, dirtyFields = newDirtyFields }
+                    { model | focus = Nothing }
             in
                 F (updateValidate validation newModel)
 
@@ -396,7 +393,7 @@ getErrorAt path (F model) =
 
 getLiveErrorAt : String -> Form e o -> Maybe (ErrorValue e)
 getLiveErrorAt name form =
-    if isSubmitted form || (isChangedAt name form && not (isDirtyAt name form)) then
+    if isSubmitted form || isDirtyAt name form then
         getErrorAt name form
     else
         Nothing

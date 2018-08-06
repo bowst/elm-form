@@ -96,7 +96,7 @@ all =
                         { path = "a.1.b.0"
                         , value = Just "not"
                         , error = Just (Error.ShorterStringThan 4)
-                        , liveError = Nothing
+                        , liveError = Just (Error.ShorterStringThan 4)
                         , isDirty = True
                         , isChanged = True
                         , hasFocus = False
@@ -150,6 +150,35 @@ all =
                     Expect.equal
                         expectedField
                         (Form.getFieldAsString "a.1.b.0" updatedForm)
+        , test "Live errors are detected when field value matches initial value after blur" <|
+            \_ ->
+                let
+                    validate =
+                        Validate.field "field_name" (Validate.string |> Validate.andThen Validate.nonEmpty)
+
+                    initialForm =
+                        Form.initial [ ( "field_name", Field.string "" ) ] validate
+
+                    updatedForm =
+                        initialForm
+                            |> Form.update validate (Form.Focus "field_name")
+                            |> Form.update validate (Form.Input "field_name" Form.Text (Field.String "example of user typing"))
+                            |> Form.update validate (Form.Input "field_name" Form.Text (Field.String ""))
+                            |> Form.update validate (Form.Blur "field_name")
+
+                    expectedField =
+                        { path = "field_name"
+                        , value = Just ""
+                        , error = Just Error.Empty
+                        , liveError = Just Error.Empty
+                        , isDirty = True
+                        , isChanged = False
+                        , hasFocus = False
+                        }
+                in
+                    Expect.equal
+                        expectedField
+                        (Form.getFieldAsString "field_name" updatedForm)
         ]
 
 
