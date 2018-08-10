@@ -9,16 +9,18 @@ module Form.Validate.Pipeline exposing (validate, with)
 Use the `(|>)` operator to build Form validators.  Heavily inspired by the wonderful [Json.Decode.Pipeline](http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/latest) package.
 
 
+## Beginning pipelines
+
+
+@docs validate
+
+
 ## Validating fields
 
 
 @docs with
 
 
-## Beginning pipelines
-
-
-@docs decode
 
 
 -}
