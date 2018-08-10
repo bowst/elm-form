@@ -4,6 +4,7 @@ import Date exposing (Date)
 import Form exposing (Form)
 import Form.Field as Field exposing (Field)
 import Form.Validate as Validate exposing (..)
+import Form.Validate.Pipeline as Validate exposing (with)
 import Regex
 
 
@@ -85,14 +86,13 @@ superpowers =
 
 validate : Validation CustomError User
 validate =
-    map6
-        User
-        (field "name" (string |> andThen nonEmpty))
-        (field "email" (email |> andThen (asyncCheck True)))
-        (field "admin" (bool |> defaultValue False))
-        (field "date" date)
-        (field "profile" validateProfile)
-        (field "todos" (list validateTodo))
+    Validate.validate User
+        |> with "name" (string |> andThen nonEmpty)
+        |> with "email" (email |> andThen (asyncCheck True))
+        |> with "admin" (bool |> defaultValue False)
+        |> with "date" date
+        |> with "profile" validateProfile
+        |> with "todos" (list validateTodo)
 
 
 validateProfile : Validation CustomError Profile

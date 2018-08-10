@@ -10,6 +10,7 @@
         "Form",
         "Form.Error",
         "Form.Validate",
+        "Form.Validate.Pipeline",
         "Form.Field",
         "Form.Input",
         "Form.Init",
