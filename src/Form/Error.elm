@@ -27,11 +27,17 @@ type ErrorValue e
     | InvalidBool
     | InvalidDate
     | SmallerIntThan Int
+    | SmallerOrEqualIntThan Int
     | GreaterIntThan Int
+    | GreaterOrEqualIntThan Int
     | SmallerFloatThan Float
+    | SmallerOrEqualFloatThan Float
     | GreaterFloatThan Float
+    | GreaterOrEqualFloatThan Float
     | ShorterStringThan Int
+    | ShorterOrEqualStringThan Int
     | LongerStringThan Int
+    | LongerOrEqualStringThan Int
     | NotIncludedIn
     | CustomError e
 
