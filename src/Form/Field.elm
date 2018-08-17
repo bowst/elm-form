@@ -1,11 +1,11 @@
-module Form.Field exposing (Field, FieldValue(..), value, string, bool, group, list, asString, asBool)
+module Form.Field exposing (Field, FieldValue(..), value, string, maybeString, bool, maybeBool, group, list, asString, asBool)
 
 {-| Read and write field values.
 
 
 # Constructors
 
-@docs Field, FieldValue, value, string, bool, group, list
+@docs Field, FieldValue, value, string, maybeString, bool, maybeBool, group, list
 
 
 # Value readers
@@ -45,11 +45,29 @@ string =
     String >> Tree.Value
 
 
+{-| Build a string field from a Maybe value. Returns EmptyField if Nothing.
+-}
+maybeString : Maybe String -> Field
+maybeString =
+    Maybe.map String
+        >> Maybe.withDefault EmptyField
+        >> Tree.Value
+
+
 {-| Build a boolean field, for checkboxes.
 -}
 bool : Bool -> Field
 bool =
     Bool >> Tree.Value
+
+
+{-| Build a boolean field from a Maybe value. Returns EmptyField if Nothing.
+-}
+maybeBool : Maybe Bool -> Field
+maybeBool =
+    Maybe.map Bool
+        >> Maybe.withDefault EmptyField
+        >> Tree.Value
 
 
 {-| Gather named fields as a group field.
